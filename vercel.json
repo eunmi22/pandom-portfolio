@@ -1,12 +1,12 @@
 {
-  "version": 2,
-  "buildCommand": "echo 'Static site - no build needed'",
-  "public": true,
-  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/",
       "destination": "/homepage.html"
+    },
+    {
+      "source": "/app",
+      "destination": "/app.html"
     }
   ]
 }
