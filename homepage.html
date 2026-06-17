@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/eunmi-park-design-system-de65a330-5c44-4daa-a6cc-ca6aaddb0f4c/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/eunmi-park-design-system-de65a330-5c44-4daa-a6cc-ca6aaddb0f4c/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/eunmi-park-design-system-de65a330-5c44-4daa-a6cc-ca6aaddb0f4c/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/eunmi-park-design-system-de65a330-5c44-4daa-a6cc-ca6aaddb0f4c/styles.css">
+  <script src="_ds/eunmi-park-design-system-de65a330-5c44-4daa-a6cc-ca6aaddb0f4c/_ds_bundle.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: white;
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+    }
+    html { scroll-behavior: smooth; }
+    a.navlink:hover { color: var(--color-blue) !important; }
+    a.btn-primary:hover { opacity: 0.9; }
+    a.btn-secondary:hover { border-color: var(--color-blue) !important; color: var(--color-blue) !important; }
+    .spec-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(16,42,86,0.10) !important; }
+    .pf-card:hover { box-shadow: 0 12px 32px rgba(16,42,86,0.10) !important; border-color: #d1d5db !important; }
+    .case-card:hover { box-shadow: 0 12px 32px rgba(16,42,86,0.10) !important; }
+    @media (max-width: 880px) {
+      .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .nav-links { display: none !important; }
+      .stat-hero { grid-template-columns: 1fr 1fr !important; }
+      .case-grid { grid-template-columns: 1fr !important; }
+      .cred-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 560px) {
+      .stat-hero { grid-template-columns: 1fr !important; }
+      .hero-actions { flex-direction: column !important; }
+      .hero-actions a { width: 100%; }
+      .career-row { flex-direction: column !important; gap: 4px !important; }
+      .career-time { min-width: 0 !important; }
+    }
+  </style>
+</helmet>
+
+<header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid #f3f4f6; padding: 18px 0;">
+  <div style="width: min(1180px, calc(100% - 40px)); margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+    <a href="#top" style="text-decoration: none; display: grid; gap: 2px;">
+      <span style="color: var(--color-navy); font-size: 1.15rem; font-weight: 900;">박은미</span>
+      <span style="color: var(--color-blue); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;">Financial IT Audit</span>
+    </a>
+    <nav class="nav-links" style="display: flex; gap: 24px;">
+      <a class="navlink" href="#specialties" style="color: #9ca3af; font-size: 0.92rem; font-weight: 600; text-decoration: none; transition: color 250ms ease;">전문 분야</a>
+      <a class="navlink" href="#cases" style="color: #9ca3af; font-size: 0.92rem; font-weight: 600; text-decoration: none; transition: color 250ms ease;">대표 경험</a>
+      <a class="navlink" href="#career" style="color: #9ca3af; font-size: 0.92rem; font-weight: 600; text-decoration: none; transition: color 250ms ease;">경력</a>
+      <a class="navlink" href="#portfolio" style="color: #9ca3af; font-size: 0.92rem; font-weight: 600; text-decoration: none; transition: color 250ms ease;">상훈·자격</a>
+      <a class="navlink" href="#contact" style="color: #9ca3af; font-size: 0.92rem; font-weight: 600; text-decoration: none; transition: color 250ms ease;">문의하기</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" style="width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 80px 0;">
+
+  <!-- Hero -->
+  <section style="margin-bottom: 100px;">
+    <div class="hero-grid" style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: center;">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: #eaf1ff; padding: 7px 14px; border-radius: 999px; margin-bottom: 24px;">
+          <span style="width: 7px; height: 7px; background: var(--color-blue); border-radius: 50%;"></span>
+          <span style="color: var(--color-blue); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.3px;">금융회사 22년 · IT감사 전문가</span>
+        </div>
+        <h1 style="color: var(--color-navy); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.08; margin: 0 0 28px; word-break: keep-all; letter-spacing: -0.5px;">금융 IT 리스크를<br>감사 관점으로 통제합니다</h1>
+        <p style="color: #4b5563; font-size: 1.12rem; font-weight: 500; line-height: 1.7; margin: 0 0 40px; word-break: keep-all; max-width: 520px;">금융 IT 개발·운영 현장 22년 경험을 바탕으로, IT 감사·내부통제·정보보호와 AX 교육 전문성을 결합해 실질적인 통제 체계를 설계합니다.</p>
+        <div class="hero-actions" style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a class="btn-primary" href="#cases" style="display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 32px; background: var(--color-navy); color: white; font-size: 0.98rem; font-weight: 800; border: none; border-radius: 6px; text-decoration: none; cursor: pointer; transition: opacity 250ms ease; letter-spacing: -0.3px;">포트폴리오 보기</a>
+          <a class="btn-secondary" href="#contact" style="display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 32px; background: white; color: var(--color-navy); font-size: 0.98rem; font-weight: 800; border: 1.5px solid #d1d5db; border-radius: 6px; text-decoration: none; cursor: pointer; transition: all 250ms ease; letter-spacing: -0.3px;">문의하기</a>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; gap: 20px; align-items: stretch;">
+          <div style="flex: 0 0 auto; width: 132px;">
+            <img src="assets/hero-portrait-small.webp" alt="박은미" style="width: 132px; height: 168px; object-fit: cover; object-position: 68% center; border-radius: 10px; background: #f7efe6; box-shadow: 0 12px 28px rgba(16,42,86,0.12);">
+          </div>
+          <div style="flex: 1; background: linear-gradient(140deg, var(--color-navy) 0%, #1e3a5f 100%); border-radius: 10px; padding: 24px; color: white; display: flex; flex-direction: column; justify-content: center;">
+            <p style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; margin: 0 0 6px; letter-spacing: 0.5px;">금융회사 재직</p>
+            <p style="margin: 0; font-size: 2.6rem; font-weight: 900; line-height: 1;">22<span style="font-size: 1.1rem; font-weight: 700;">년</span></p>
+            <p style="margin: 10px 0 0; font-size: 0.82rem; font-weight: 500; opacity: 0.85; word-break: keep-all;">개발·운영부터 감사까지</p>
+          </div>
+        </div>
+        <div class="stat-hero" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;">
+          <div style="background: #f7f8fa; border-radius: 10px; padding: 18px 16px; text-align: center;">
+            <p style="margin: 0; font-size: 1.7rem; font-weight: 900; color: var(--color-blue);">12<span style="font-size: 0.8rem; color: #6b7280;">년</span></p>
+            <p style="margin: 6px 0 0; font-size: 0.74rem; font-weight: 700; color: #6b7280; word-break: keep-all;">IT 개발·운영</p>
+          </div>
+          <div style="background: #f7f8fa; border-radius: 10px; padding: 18px 16px; text-align: center;">
+            <p style="margin: 0; font-size: 1.7rem; font-weight: 900; color: #087f8c;">5<span style="font-size: 0.8rem; color: #6b7280;">년</span></p>
+            <p style="margin: 6px 0 0; font-size: 0.74rem; font-weight: 700; color: #6b7280; word-break: keep-all;">IT 자체감사</p>
+          </div>
+          <div style="background: #f7f8fa; border-radius: 10px; padding: 18px 16px; text-align: center;">
+            <p style="margin: 0; font-size: 1.7rem; font-weight: 900; color: #9a6a16;">4<span style="font-size: 0.8rem; color: #6b7280;">건</span></p>
+            <p style="margin: 6px 0 0; font-size: 0.74rem; font-weight: 700; color: #6b7280; word-break: keep-all;">공식 상훈</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strengths strip -->
+  <section style="margin-bottom: 100px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: #e5e7eb; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+      <div style="background: white; padding: 28px;">
+        <p style="color: var(--color-blue); font-size: 1.4rem; font-weight: 900; margin: 0 0 10px;">01</p>
+        <h3 style="color: var(--color-navy); font-size: 1.02rem; font-weight: 900; margin: 0 0 8px; word-break: keep-all;">금융 IT 실무 기반</h3>
+        <p style="color: #6b7280; font-size: 0.86rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">외환·여신·가상계좌·전자어음·AML·그룹웨어 등 금융 시스템 개발·운영 경험</p>
+      </div>
+      <div style="background: white; padding: 28px;">
+        <p style="color: #087f8c; font-size: 1.4rem; font-weight: 900; margin: 0 0 10px;">02</p>
+        <h3 style="color: var(--color-navy); font-size: 1.02rem; font-weight: 900; margin: 0 0 8px; word-break: keep-all;">IT 감사 수행력</h3>
+        <p style="color: #6b7280; font-size: 0.86rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">상시·정기·수시·테마감사 및 주요 IT통제 영역 점검 수행</p>
+      </div>
+      <div style="background: white; padding: 28px;">
+        <p style="color: #f59e0b; font-size: 1.4rem; font-weight: 900; margin: 0 0 10px;">03</p>
+        <h3 style="color: var(--color-navy); font-size: 1.02rem; font-weight: 900; margin: 0 0 8px; word-break: keep-all;">수검 대응 역량</h3>
+        <p style="color: #6b7280; font-size: 0.86rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">감독기관·회계감사·개인정보·IT리스크 평가 등 대내외 수검 대응</p>
+      </div>
+      <div style="background: white; padding: 28px;">
+        <p style="color: #9a6a16; font-size: 1.4rem; font-weight: 900; margin: 0 0 10px;">04</p>
+        <h3 style="color: var(--color-navy); font-size: 1.02rem; font-weight: 900; margin: 0 0 8px; word-break: keep-all;">AI 자동화 활용</h3>
+        <p style="color: #6b7280; font-size: 0.86rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">반복 감사업무 자동화와 보고서 초안 체계화로 감사 품질·효율 개선</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialties -->
+  <section id="specialties" style="margin-bottom: 110px; scroll-margin-top: 90px;">
+    <div style="margin-bottom: 56px;">
+      <p style="color: var(--color-blue); font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin: 0 0 12px; letter-spacing: 0.5px;">Expertise</p>
+      <h2 style="color: var(--color-navy); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; line-height: 1.15; margin: 0; word-break: keep-all; letter-spacing: -0.3px;">4가지 핵심 전문 분야</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+      <div class="spec-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 250ms ease;">
+        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, var(--color-blue) 0%, #155eef 100%); border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M7 12l3 3 7-7"></path></svg>
+        </div>
+        <h3 style="color: var(--color-navy); font-size: 1.2rem; font-weight: 900; margin: 0 0 12px; word-break: keep-all;">금융 IT 개발·운영</h3>
+        <p style="color: #6b7280; font-size: 0.95rem; font-weight: 500; line-height: 1.6; margin: 0; word-break: keep-all;">외환·여신·전자금융 등 금융 시스템의 실무 운영 경험으로 IT 아키텍처와 운영 리스크를 현실적으로 이해합니다.</p>
+      </div>
+      <div class="spec-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 250ms ease;">
+        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #087f8c 0%, #0a9fb5 100%); border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+        </div>
+        <h3 style="color: var(--color-navy); font-size: 1.2rem; font-weight: 900; margin: 0 0 12px; word-break: keep-all;">IT 감사·내부통제</h3>
+        <p style="color: #6b7280; font-size: 0.95rem; font-weight: 500; line-height: 1.6; margin: 0; word-break: keep-all;">리스크 기반 감사계획 수립부터 IT 통제 영역 점검까지 체계적인 감사 프레임워크를 설계합니다.</p>
+      </div>
+      <div class="spec-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 250ms ease;">
+        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+        </div>
+        <h3 style="color: var(--color-navy); font-size: 1.2rem; font-weight: 900; margin: 0 0 12px; word-break: keep-all;">정보보호·보안</h3>
+        <p style="color: #6b7280; font-size: 0.95rem; font-weight: 500; line-height: 1.6; margin: 0; word-break: keep-all;">접근권한·프로그램 변경·비밀번호 정책 등 IT 보안 통제를 금융 규제 기준에 맞춰 강화합니다.</p>
+      </div>
+      <div class="spec-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 250ms ease;">
+        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #9a6a16 0%, #b8860b 100%); border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7z"></path></svg>
+        </div>
+        <h3 style="color: var(--color-navy); font-size: 1.2rem; font-weight: 900; margin: 0 0 12px; word-break: keep-all;">AX 교육·자동화</h3>
+        <p style="color: #6b7280; font-size: 0.95rem; font-weight: 500; line-height: 1.6; margin: 0; word-break: keep-all;">AI·VBA를 활용해 감사 보고서·체크리스트 등 반복업무를 자동화하고, AX 교육으로 역량 전환을 이끕니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected Experience -->
+  <section id="cases" style="margin-bottom: 110px; scroll-margin-top: 90px;">
+    <div style="margin-bottom: 56px;">
+      <p style="color: var(--color-blue); font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin: 0 0 12px; letter-spacing: 0.5px;">Selected Experience</p>
+      <h2 style="color: var(--color-navy); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; line-height: 1.15; margin: 0 0 12px; word-break: keep-all; letter-spacing: -0.3px;">대표 경험과 성과</h2>
+      <p style="color: #6b7280; font-size: 1rem; font-weight: 500; margin: 0; word-break: keep-all;">단순 지적이 아닌 재발방지와 통제 개선으로 이어진 핵심 프로젝트</p>
+    </div>
+    <div class="case-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+      <article class="case-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; transition: all 250ms ease; display: flex; flex-direction: column;">
+        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--color-blue) 0%, #155eef 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; font-weight: 900; margin-bottom: 20px;">A</div>
+        <h3 style="color: var(--color-navy); font-size: 1.15rem; font-weight: 900; margin: 0 0 12px; word-break: keep-all; line-height: 1.35;">리스크 기반 IT감사 체계 수립 및 수행</h3>
+        <p style="color: #6b7280; font-size: 0.92rem; font-weight: 500; line-height: 1.6; margin: 0 0 20px; word-break: keep-all; flex: 1;">제재사례와 감독방향을 반영해 감사계획을 수립하고, 주요 IT통제 영역 중심으로 점검항목을 체계화했습니다. 일상·상시·종합·특별감사를 통해 내부통제 취약점을 식별하고 개선과제로 연결했습니다.</p>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <span style="background: #eaf1ff; color: var(--color-blue); font-size: 0.72rem; font-weight: 700; padding: 5px 10px; border-radius: 6px;">IT Risk</span>
+          <span style="background: #eaf1ff; color: var(--color-blue); font-size: 0.72rem; font-weight: 700; padding: 5px 10px; border-radius: 6px;">Control Testing</span>
+          <span style="background: #eaf1ff; color: var(--color-blue); font-size: 0.72rem; font-weight: 700; padding: 5px 10px; border-radius: 6px;">Audit Planning</span>
+        </div>
+      </article>
+      <article class="case-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; transition: all 250ms ease; display: flex; flex-direction: column;">
+        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #087f8c 0%, #0a9fb5 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; font-weight: 900; margin-bottom: 20px;">B</div>
+        <h3 style="color: var(--color-navy); font-size: 1.15rem; font-weight: 900; margin: 0 0 12px; word-break: keep-all; line-height: 1.35;">전자금융 기반시설·장애관리·재해복구 통제</h3>
+        <p style="color: #6b7280; font-size: 0.92rem; font-weight: 500; line-height: 1.6; margin: 0 0 20px; word-break: keep-all; flex: 1;">전자금융 기반시설 취약점 점검, 재해복구 훈련 조정·통제, 전자금융사고 원인 분석과 재발방지 대책 수립을 수행했습니다. 재발방지 체계와 모니터링 흐름을 만드는 데 집중했습니다.</p>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <span style="background: #f0fafb; color: #087f8c; font-size: 0.72rem; font-weight: 700; padding: 5px 10px; border-radius: 6px;">전자금융</span>
+          <span style="background: #f0fafb; color: #087f8c; font-size: 0.72rem; font-weight: 700; padding: 5px 10px; border-radius: 6px;">DR</span>
+          <span style="background: #f0fafb; color: #087f8c; font-size: 0.72rem; font-weight: 700; padding: 5px 10px; border-radius: 6px;">장애관리</span>
+        </div>
+      </article>
+      <article class="case-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; transition: all 250ms ease; display: flex; flex-direction: column;">
+        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #9a6a16 0%, #b8860b 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; font-weight: 900; margin-bottom: 20px;">C</div>
+        <h3 style="color: var(--color-navy); font-size: 1.15rem; font-weight: 900; margin: 0 0 12px; word-break: keep-all; line-height: 1.35;">AI·VBA 기반 감사업무 자동화</h3>
+        <p style="color: #6b7280; font-size: 0.92rem; font-weight: 500; line-height: 1.6; margin: 0 0 20px; word-break: keep-all; flex: 1;">제재공시 알림, IT 감사업무 문답, 감사수행 자료 정리, 감사보고서 초안 작성 체계를 자동화했습니다. 반복 업무를 줄이고 표준화를 강화해 감사 수행시간을 약 50% 단축했습니다.</p>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <span style="background: #fef5e7; color: #9a6a16; font-size: 0.72rem; font-weight: 700; padding: 5px 10px; border-radius: 6px;">AI 활용</span>
+          <span style="background: #fef5e7; color: #9a6a16; font-size: 0.72rem; font-weight: 700; padding: 5px 10px; border-radius: 6px;">VBA</span>
+          <span style="background: #fef5e7; color: #9a6a16; font-size: 0.72rem; font-weight: 700; padding: 5px 10px; border-radius: 6px;">업무 자동화</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Career Timeline -->
+  <section id="career" style="margin-bottom: 110px; scroll-margin-top: 90px;">
+    <div style="margin-bottom: 40px;">
+      <p style="color: var(--color-blue); font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin: 0 0 12px; letter-spacing: 0.5px;">Career Timeline</p>
+      <h2 style="color: var(--color-navy); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; line-height: 1.15; margin: 0; word-break: keep-all; letter-spacing: -0.3px;">공식 경력증명서 기반 경력 흐름</h2>
+    </div>
+    <!-- Impact banner -->
+    <div style="background: linear-gradient(135deg, var(--color-navy) 0%, #1e3a5f 100%); border-radius: 14px; padding: 36px 40px; margin-bottom: 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 260px;">
+        <p style="color: #a9d6ff; font-size: 0.78rem; font-weight: 900; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px;">Impact</p>
+        <p style="color: white; font-size: 1.5rem; font-weight: 900; margin: 0 0 8px; word-break: keep-all;">개발·운영에서 감사·내부통제로 확장</p>
+        <p style="color: #d9e8fb; font-size: 0.92rem; font-weight: 500; margin: 0; word-break: keep-all;">반복 감사업무 자동화와 보고서 초안 체계화로 수행 효율과 결과물 품질을 함께 개선했습니다.</p>
+      </div>
+      <div style="text-align: center;">
+        <p style="color: white; font-size: 3rem; font-weight: 900; margin: 0; line-height: 1;">50%</p>
+        <p style="color: #a9d6ff; font-size: 0.82rem; font-weight: 700; margin: 8px 0 0;">감사시간 단축</p>
+      </div>
+    </div>
+    <!-- Timeline -->
+    <div style="position: relative;">
+      <div style="position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: #e5e7eb;"></div>
+      <div style="display: grid; gap: 4px;">
+        <div style="position: relative; padding-left: 40px; padding-top: 16px; padding-bottom: 16px;">
+          <div style="position: absolute; left: 0; top: 22px; width: 16px; height: 16px; background: var(--color-blue); border: 3px solid white; border-radius: 50%; box-shadow: 0 0 0 1px var(--color-blue);"></div>
+          <div class="career-row" style="display: flex; gap: 24px; align-items: baseline;">
+            <span class="career-time" style="min-width: 150px; color: var(--color-blue); font-size: 0.85rem; font-weight: 800; white-space: nowrap;">2024.04 – 2026.01</span>
+            <div>
+              <h3 style="color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin: 0 0 4px; word-break: keep-all;">오케이저축은행 · IT부문 감사</h3>
+              <p style="color: #6b7280; font-size: 0.9rem; font-weight: 500; margin: 0; word-break: keep-all;">개인신용정보 접근권한, 정보보안정책 등 IT부문 감사 수행 및 IT품질관리</p>
+            </div>
+          </div>
+        </div>
+        <div style="position: relative; padding-left: 40px; padding-top: 16px; padding-bottom: 16px;">
+          <div style="position: absolute; left: 0; top: 22px; width: 16px; height: 16px; background: #087f8c; border: 3px solid white; border-radius: 50%; box-shadow: 0 0 0 1px #087f8c;"></div>
+          <div class="career-row" style="display: flex; gap: 24px; align-items: baseline;">
+            <span class="career-time" style="min-width: 150px; color: #087f8c; font-size: 0.85rem; font-weight: 800; white-space: nowrap;">2022.02 – 2023.12</span>
+            <div>
+              <h3 style="color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin: 0 0 4px; word-break: keep-all;">수협은행 · 계정계시스템 개발/운영</h3>
+              <p style="color: #6b7280; font-size: 0.9rem; font-weight: 500; margin: 0; word-break: keep-all;">여신 및 외환 IT 시스템 구축·운영, IT시스템관리 실무 수행</p>
+            </div>
+          </div>
+        </div>
+        <div style="position: relative; padding-left: 40px; padding-top: 16px; padding-bottom: 16px;">
+          <div style="position: absolute; left: 0; top: 22px; width: 16px; height: 16px; background: var(--color-blue); border: 3px solid white; border-radius: 50%; box-shadow: 0 0 0 1px var(--color-blue);"></div>
+          <div class="career-row" style="display: flex; gap: 24px; align-items: baseline;">
+            <span class="career-time" style="min-width: 150px; color: var(--color-blue); font-size: 0.85rem; font-weight: 800; white-space: nowrap;">2019.05 – 2022.02</span>
+            <div>
+              <h3 style="color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin: 0 0 4px; word-break: keep-all;">수협은행 · IT내부통제 수립 및 실시</h3>
+              <p style="color: #6b7280; font-size: 0.9rem; font-weight: 500; margin: 0; word-break: keep-all;">개인신용정보시스템 자체점검 등 IT품질관리 및 IT감사 영역 수행</p>
+            </div>
+          </div>
+        </div>
+        <div style="position: relative; padding-left: 40px; padding-top: 16px; padding-bottom: 16px;">
+          <div style="position: absolute; left: 0; top: 22px; width: 16px; height: 16px; background: #9a6a16; border: 3px solid white; border-radius: 50%; box-shadow: 0 0 0 1px #9a6a16;"></div>
+          <div class="career-row" style="display: flex; gap: 24px; align-items: baseline;">
+            <span class="career-time" style="min-width: 150px; color: #9a6a16; font-size: 0.85rem; font-weight: 800; white-space: nowrap;">2018.02 – 2019.05</span>
+            <div>
+              <h3 style="color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin: 0 0 4px; word-break: keep-all;">수협은행 · 가상계좌시스템 고도화</h3>
+              <p style="color: #6b7280; font-size: 0.9rem; font-weight: 500; margin: 0; word-break: keep-all;">개인신용정보시스템 개발·운영 및 금융결제 연계 시스템 운영</p>
+            </div>
+          </div>
+        </div>
+        <div style="position: relative; padding-left: 40px; padding-top: 16px; padding-bottom: 16px;">
+          <div style="position: absolute; left: 0; top: 22px; width: 16px; height: 16px; background: #9a6a16; border: 3px solid white; border-radius: 50%; box-shadow: 0 0 0 1px #9a6a16;"></div>
+          <div class="career-row" style="display: flex; gap: 24px; align-items: baseline;">
+            <span class="career-time" style="min-width: 150px; color: #9a6a16; font-size: 0.85rem; font-weight: 800; white-space: nowrap;">2013.11 – 2016.07</span>
+            <div>
+              <h3 style="color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin: 0 0 4px; word-break: keep-all;">수협중앙회 · 가상계좌/전자어음 개발운영</h3>
+              <p style="color: #6b7280; font-size: 0.9rem; font-weight: 500; margin: 0; word-break: keep-all;">가상계좌, 전자어음 개발운영 및 전자어음 프로젝트 참여</p>
+            </div>
+          </div>
+        </div>
+        <div style="position: relative; padding-left: 40px; padding-top: 16px; padding-bottom: 16px;">
+          <div style="position: absolute; left: 0; top: 22px; width: 16px; height: 16px; background: #9a6a16; border: 3px solid white; border-radius: 50%; box-shadow: 0 0 0 1px #9a6a16;"></div>
+          <div class="career-row" style="display: flex; gap: 24px; align-items: baseline;">
+            <span class="career-time" style="min-width: 150px; color: #9a6a16; font-size: 0.85rem; font-weight: 800; white-space: nowrap;">2010.12 – 2011.11</span>
+            <div>
+              <h3 style="color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin: 0 0 4px; word-break: keep-all;">수협중앙회 · 감사정보시스템 자체개발</h3>
+              <p style="color: #6b7280; font-size: 0.9rem; font-weight: 500; margin: 0; word-break: keep-all;">조합감사정보시스템 자체개발 및 코어뱅킹 차세대 프로젝트 대응개발 참여</p>
+            </div>
+          </div>
+        </div>
+        <div style="position: relative; padding-left: 40px; padding-top: 16px; padding-bottom: 16px;">
+          <div style="position: absolute; left: 0; top: 22px; width: 16px; height: 16px; background: #9a6a16; border: 3px solid white; border-radius: 50%; box-shadow: 0 0 0 1px #9a6a16;"></div>
+          <div class="career-row" style="display: flex; gap: 24px; align-items: baseline;">
+            <span class="career-time" style="min-width: 150px; color: #9a6a16; font-size: 0.85rem; font-weight: 800; white-space: nowrap;">2003.11 – 2009.09</span>
+            <div>
+              <h3 style="color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin: 0 0 4px; word-break: keep-all;">수협중앙회 · 전자결재/AML 개발운영</h3>
+              <p style="color: #6b7280; font-size: 0.9rem; font-weight: 500; margin: 0; word-break: keep-all;">전자결재 그룹웨어 시스템 개발운영 및 자금세탁방지 구축 프로젝트 참여</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competency Matrix -->
+  <section style="margin-bottom: 110px;">
+    <div style="margin-bottom: 40px;">
+      <p style="color: var(--color-blue); font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin: 0 0 12px; letter-spacing: 0.5px;">Competency Matrix</p>
+      <h2 style="color: var(--color-navy); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; line-height: 1.15; margin: 0; word-break: keep-all; letter-spacing: -0.3px;">핵심 역량</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+      <article style="background: #f7f8fa; border-radius: 10px; padding: 24px;">
+        <strong style="display: block; color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin-bottom: 10px;">감사</strong>
+        <p style="color: #6b7280; font-size: 0.88rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">상시감사, 정기감사, 수시감사, 테마감사, 감사계획, 감사보고서</p>
+      </article>
+      <article style="background: #f7f8fa; border-radius: 10px; padding: 24px;">
+        <strong style="display: block; color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin-bottom: 10px;">통제</strong>
+        <p style="color: #6b7280; font-size: 0.88rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">접근권한, 프로그램 변경, 장애관리, 백업, 비밀번호 정책, 공개서버</p>
+      </article>
+      <article style="background: #f7f8fa; border-radius: 10px; padding: 24px;">
+        <strong style="display: block; color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin-bottom: 10px;">수검</strong>
+        <p style="color: #6b7280; font-size: 0.88rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">금융감독원, 회계감사, 개인정보 점검, IT리스크 평가, 내부감사협의체</p>
+      </article>
+      <article style="background: #f7f8fa; border-radius: 10px; padding: 24px;">
+        <strong style="display: block; color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin-bottom: 10px;">시스템</strong>
+        <p style="color: #6b7280; font-size: 0.88rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">외환, 여신, 전자금융, AML, 코어뱅킹, 전자결재, 대외기관 연계</p>
+      </article>
+      <article style="background: #f7f8fa; border-radius: 10px; padding: 24px;">
+        <strong style="display: block; color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin-bottom: 10px;">자동화</strong>
+        <p style="color: #6b7280; font-size: 0.88rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">AI 활용, VBA, 반복업무 자동화, 보고서 초안 작성, 체크리스트 표준화</p>
+      </article>
+      <article style="background: #f7f8fa; border-radius: 10px; padding: 24px;">
+        <strong style="display: block; color: var(--color-navy); font-size: 1.05rem; font-weight: 900; margin-bottom: 10px;">교육</strong>
+        <p style="color: #6b7280; font-size: 0.88rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">정보보호대학원 재학중, 정보시스템 감리원 양성과정, 금융보안·컴플라이언스 교육</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Awards & Credentials -->
+  <section id="portfolio" style="margin-bottom: 110px; scroll-margin-top: 90px;">
+    <div style="margin-bottom: 40px;">
+      <p style="color: var(--color-blue); font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin: 0 0 12px; letter-spacing: 0.5px;">Awards &amp; Learning</p>
+      <h2 style="color: var(--color-navy); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; line-height: 1.15; margin: 0 0 12px; word-break: keep-all; letter-spacing: -0.3px;">상훈·자격·학력</h2>
+      <p style="color: #6b7280; font-size: 1rem; font-weight: 500; margin: 0; word-break: keep-all;">22년간의 현장에서 인정받은 공식 상훈 4건과 전문 자격</p>
+    </div>
+
+    <!-- Awards timeline -->
+    <div style="position: relative; margin-bottom: 48px;">
+      <div style="position: absolute; left: 15px; top: 12px; bottom: 12px; width: 2px; background: linear-gradient(180deg, var(--color-blue) 0%, #087f8c 35%, #f59e0b 70%, #9a6a16 100%);"></div>
+      <div style="display: grid; gap: 20px;">
+        <div style="position: relative; padding-left: 56px;">
+          <div style="position: absolute; left: 4px; top: 8px; width: 24px; height: 24px; background: white; border: 3px solid var(--color-blue); border-radius: 50%;"></div>
+          <div class="pf-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px 28px; transition: all 250ms ease;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <span style="background: #eaf1ff; color: var(--color-blue); font-size: 0.72rem; font-weight: 900; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.3px;">2025.10</span>
+              <span style="color: #9ca3af; font-size: 0.8rem; font-weight: 600;">표창</span>
+            </div>
+            <h3 style="color: var(--color-navy); font-size: 1.12rem; font-weight: 900; margin: 0 0 6px; word-break: keep-all;">경기도의회장 표창장</h3>
+            <p style="color: #6b7280; font-size: 0.92rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">지역사회 발전 헌신 및 지역주민 화합 기여</p>
+          </div>
+        </div>
+        <div style="position: relative; padding-left: 56px;">
+          <div style="position: absolute; left: 4px; top: 8px; width: 24px; height: 24px; background: white; border: 3px solid #087f8c; border-radius: 50%;"></div>
+          <div class="pf-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px 28px; transition: all 250ms ease;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <span style="background: #f0fafb; color: #087f8c; font-size: 0.72rem; font-weight: 900; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.3px;">2020.12</span>
+              <span style="color: #9ca3af; font-size: 0.8rem; font-weight: 600;">은행장상</span>
+            </div>
+            <h3 style="color: var(--color-navy); font-size: 1.12rem; font-weight: 900; margin: 0 0 6px; word-break: keep-all;">수협은행 은행장상</h3>
+            <p style="color: #6b7280; font-size: 0.92rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">2020년 하반기 내부부서 우수직원, IT그룹부문</p>
+          </div>
+        </div>
+        <div style="position: relative; padding-left: 56px;">
+          <div style="position: absolute; left: 4px; top: 8px; width: 24px; height: 24px; background: white; border: 3px solid #f59e0b; border-radius: 50%;"></div>
+          <div class="pf-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px 28px; transition: all 250ms ease;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <span style="background: #fef3c7; color: #b45309; font-size: 0.72rem; font-weight: 900; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.3px;">2018.06</span>
+              <span style="color: #9ca3af; font-size: 0.8rem; font-weight: 600;">표창</span>
+            </div>
+            <h3 style="color: var(--color-navy); font-size: 1.12rem; font-weight: 900; margin: 0 0 6px; word-break: keep-all;">수협은행 은행장 표창</h3>
+            <p style="color: #6b7280; font-size: 0.92rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">2018년 상반기 기타업무유공 포상, IT그룹부문</p>
+          </div>
+        </div>
+        <div style="position: relative; padding-left: 56px;">
+          <div style="position: absolute; left: 4px; top: 8px; width: 24px; height: 24px; background: white; border: 3px solid #9a6a16; border-radius: 50%;"></div>
+          <div class="pf-card" style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px 28px; transition: all 250ms ease;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <span style="background: #fef5e7; color: #9a6a16; font-size: 0.72rem; font-weight: 900; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.3px;">2011.10</span>
+              <span style="color: #9ca3af; font-size: 0.8rem; font-weight: 600;">구축유공</span>
+            </div>
+            <h3 style="color: var(--color-navy); font-size: 1.12rem; font-weight: 900; margin: 0 0 6px; word-break: keep-all;">Nextro 신전산시스템 구축유공</h3>
+            <p style="color: #6b7280; font-size: 0.92rem; font-weight: 500; line-height: 1.55; margin: 0; word-break: keep-all;">신전산시스템 구축 프로젝트 기여 공로</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Credentials -->
+    <div class="cred-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px;">
+        <h3 style="color: var(--color-navy); font-size: 1.15rem; font-weight: 900; margin: 0 0 20px;">전문자격</h3>
+        <ul style="list-style: none; margin: 0; padding: 0; display: grid; gap: 0;">
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6;"><strong style="color: var(--color-navy); font-size: 0.95rem; font-weight: 700;">정보시스템 감리원</strong><span style="color: #9ca3af; font-size: 0.85rem; font-weight: 600;">2026.04</span></li>
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6;"><strong style="color: var(--color-navy); font-size: 0.95rem; font-weight: 700;">ADsP</strong><span style="color: #9ca3af; font-size: 0.85rem; font-weight: 600;">2023.03</span></li>
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6;"><strong style="color: var(--color-navy); font-size: 0.95rem; font-weight: 700;">파생상품투자권유자문인력</strong><span style="color: #9ca3af; font-size: 0.85rem; font-weight: 600;">2023.02</span></li>
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6;"><strong style="color: var(--color-navy); font-size: 0.95rem; font-weight: 700;">펀드투자상담사</strong><span style="color: #9ca3af; font-size: 0.85rem; font-weight: 600;">2011.04</span></li>
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6;"><strong style="color: var(--color-navy); font-size: 0.95rem; font-weight: 700;">정보처리기사</strong><span style="color: #9ca3af; font-size: 0.85rem; font-weight: 600;">2006.06</span></li>
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;"><strong style="color: var(--color-navy); font-size: 0.95rem; font-weight: 700;">정보처리산업기사</strong><span style="color: #9ca3af; font-size: 0.85rem; font-weight: 600;">1999.08</span></li>
+        </ul>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px;">
+          <h3 style="color: var(--color-navy); font-size: 1.15rem; font-weight: 900; margin: 0 0 20px;">학력</h3>
+          <ul style="list-style: none; margin: 0; padding: 0; display: grid; gap: 0;">
+            <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6;"><strong style="color: var(--color-navy); font-size: 0.95rem; font-weight: 700;">세종사이버 정보보호대학원</strong><span style="color: #087f8c; font-size: 0.82rem; font-weight: 700;">3학기 재학중</span></li>
+            <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6;"><strong style="color: var(--color-navy); font-size: 0.95rem; font-weight: 700;">방송통신 · 컴퓨터과학과</strong><span style="color: #9ca3af; font-size: 0.85rem; font-weight: 600;">학사</span></li>
+            <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;"><strong style="color: var(--color-navy); font-size: 0.95rem; font-weight: 700;">인덕대학교 · 소프트웨어개발</strong><span style="color: #9ca3af; font-size: 0.85rem; font-weight: 600;">전문학사</span></li>
+          </ul>
+        </div>
+        <div style="background: linear-gradient(135deg, #f7f8fa 0%, #eef1f5 100%); border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px;">
+          <h3 style="color: var(--color-navy); font-size: 1.15rem; font-weight: 900; margin: 0 0 16px;">최근 교육</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="background: white; color: #475467; font-size: 0.8rem; font-weight: 600; padding: 7px 13px; border-radius: 999px; border: 1px solid #e5e7eb;">정보시스템 감리원 양성과정</span>
+            <span style="background: white; color: #475467; font-size: 0.8rem; font-weight: 600; padding: 7px 13px; border-radius: 999px; border: 1px solid #e5e7eb;">AI Engineer Core</span>
+            <span style="background: white; color: #475467; font-size: 0.8rem; font-weight: 600; padding: 7px 13px; border-radius: 999px; border: 1px solid #e5e7eb;">CISA 과정</span>
+            <span style="background: white; color: #475467; font-size: 0.8rem; font-weight: 600; padding: 7px 13px; border-radius: 999px; border: 1px solid #e5e7eb;">데이터 분석 아카데미</span>
+            <span style="background: white; color: #475467; font-size: 0.8rem; font-weight: 600; padding: 7px 13px; border-radius: 999px; border: 1px solid #e5e7eb;">가명익명처리 전문가</span>
+            <span style="background: white; color: #475467; font-size: 0.8rem; font-weight: 600; padding: 7px 13px; border-radius: 999px; border: 1px solid #e5e7eb;">금융 IT 감사 실무</span>
+            <span style="background: white; color: #475467; font-size: 0.8rem; font-weight: 600; padding: 7px 13px; border-radius: 999px; border: 1px solid #e5e7eb;">IT컴플라이언스</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="background: var(--color-navy); border-radius: 16px; padding: 64px 48px; color: white; margin-bottom: 60px; scroll-margin-top: 90px; background-image: linear-gradient(135deg, var(--color-navy) 0%, #1e3a5f 100%);">
+    <div style="text-align: center; margin-bottom: 40px;">
+      <p style="color: #a9d6ff; font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin: 0 0 16px; letter-spacing: 0.5px;">Contact</p>
+      <h2 style="font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; margin: 0 0 16px; word-break: keep-all; letter-spacing: -0.3px;">함께 일할 기회를 찾고 있습니다</h2>
+      <p style="font-size: 1.05rem; font-weight: 500; margin: 0; opacity: 0.9; word-break: keep-all; max-width: 560px; margin-left: auto; margin-right: auto;">금융 IT 감사·내부통제·정보보호 직무 관련 채용, 인터뷰, 강의 문의를 환영합니다. 회사명, 문의 목적, 연락 가능한 정보를 함께 보내 주세요.</p>
+    </div>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="mailto:pandom@naver.com" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 32px; background: white; color: var(--color-navy); font-size: 1rem; font-weight: 800; border: none; border-radius: 6px; text-decoration: none; cursor: pointer; transition: all 250ms ease; letter-spacing: -0.3px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg>
+        pandom@naver.com
+      </a>
+      <a href="tel:010-9903-8994" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 32px; background: transparent; color: white; font-size: 1rem; font-weight: 800; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 6px; text-decoration: none; cursor: pointer; transition: all 250ms ease; letter-spacing: -0.3px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        010-9903-8994
+      </a>
+    </div>
+    <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.15);">
+      <div style="text-align: center;">
+        <p style="color: #a9d6ff; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.3px;">지원 직무</p>
+        <p style="color: white; font-size: 0.95rem; font-weight: 700; margin: 0; word-break: keep-all;">IT 감사 / 내부통제 / 금융 IT 리스크 관리</p>
+      </div>
+      <div style="text-align: center;">
+        <p style="color: #a9d6ff; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.3px;">차별점</p>
+        <p style="color: white; font-size: 0.95rem; font-weight: 700; margin: 0; word-break: keep-all;">개발·운영 실무와 감사 실무를 함께 보유</p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align: center; padding: 32px 0; border-top: 1px solid #f3f4f6;">
+    <p style="color: #9ca3af; font-size: 0.85rem; font-weight: 600; margin: 0;">© 2026 박은미 · Financial IT Audit &amp; Internal Control</p>
+  </footer>
+
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
