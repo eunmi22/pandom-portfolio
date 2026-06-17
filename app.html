@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>박은미 | 금융 IT 감사 전문가</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    body { background: #ffffff; color: #101828; overflow-x: hidden; }
+    body.dark-mode { background: #0f1419; color: #f9fafb; }
+    
+    /* Status bar */
+    .status-bar { height: max(8px, env(safe-area-inset-top)); background: inherit; }
+    
+    /* App container */
+    .app-container { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+    .app-main { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+    .app-nav { height: max(60px, calc(60px + env(safe-area-inset-bottom))); padding-bottom: env(safe-area-inset-bottom); border-top: 1px solid #e5e7eb; display: flex; background: inherit; position: sticky; bottom: 0; }
+    body.dark-mode .app-nav { border-top-color: #374151; }
+    
+    /* Nav tabs */
+    .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: none; border: none; cursor: pointer; transition: all 200ms; color: #9ca3af; font-size: 0.7rem; font-weight: 600; }
+    .nav-btn.active { color: #155eef; }
+    body.dark-mode .nav-btn { color: #9ca3af; }
+    body.dark-mode .nav-btn.active { color: #93c5fd; }
+    .nav-btn svg { width: 24px; height: 24px; }
+    
+    /* Screens */
+    .screen { display: none; padding: 0; }
+    .screen.active { display: flex; flex-direction: column; }
+    
+    /* Profile screen */
+    #profile-screen { padding: 16px; gap: 16px; }
+    .profile-header { display: flex; align-items: center; justify-content: space-between; }
+    .theme-toggle { width: 44px; height: 44px; border: none; border-radius: 50%; background: #f3f4f6; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    body.dark-mode .theme-toggle { background: #374151; }
+    
+    .profile-card { background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    body.dark-mode .profile-card { background: #1f2937; border-color: #374151; }
+    
+    .profile-photo { width: 120px; height: 152px; object-fit: cover; border-radius: 12px; margin: 0 auto 16px; background: #f3f4f6; }
+    
+    .profile-name { margin: 0; font-size: 1.5rem; font-weight: 900; }
+    .profile-title { margin: 4px 0 16px; color: #6b7280; font-size: 0.9rem; font-weight: 600; }
+    body.dark-mode .profile-title { color: #d1d5db; }
+    
+    .profile-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 20px 0; }
+    .stat { padding: 12px; background: #f9fafb; border-radius: 12px; }
+    body.dark-mode .stat { background: #111827; }
+    .stat-num { display: block; font-size: 1.4rem; font-weight: 900; color: #155eef; }
+    body.dark-mode .stat-num { color: #93c5fd; }
+    .stat-label { display: block; font-size: 0.7rem; font-weight: 600; color: #6b7280; margin-top: 4px; }
+    body.dark-mode .stat-label { color: #9ca3af; }
+    
+    .quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .action-btn { padding: 12px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 200ms; font-size: 0.85rem; }
+    .btn-primary { background: #1f2a44; color: white; }
+    body.dark-mode .btn-primary { background: #155eef; }
+    .btn-secondary { background: #f3f4f6; color: #1f2a44; border: 1.5px solid #d1d5db; }
+    body.dark-mode .btn-secondary { background: transparent; color: #e5e7eb; border-color: #4b5563; }
+    .action-btn:active { opacity: 0.8; }
+    
+    /* Experience screen */
+    #experience-screen { padding: 16px; gap: 12px; }
+    .section-title { padding: 0 16px; font-size: 1.1rem; font-weight: 900; margin: 8px 0 12px -16px; padding-left: 16px; }
+    
+    .card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 0; }
+    body.dark-mode .card { background: #1f2937; border-color: #374151; }
+    
+    .card-title { margin: 0 0 8px; font-size: 0.95rem; font-weight: 800; }
+    .card-desc { margin: 0; font-size: 0.82rem; color: #6b7280; line-height: 1.5; }
+    body.dark-mode .card-desc { color: #d1d5db; }
+    
+    .card-tag { display: inline-block; background: #eaf1ff; color: #155eef; font-size: 0.65rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; margin-top: 8px; margin-right: 4px; }
+    body.dark-mode .card-tag { background: #1e3a5f; color: #93c5fd; }
+    
+    .timeline-item { position: relative; padding-left: 24px; margin-bottom: 16px; }
+    .timeline-dot { position: absolute; left: 0; top: 3px; width: 12px; height: 12px; background: #155eef; border: 2px solid white; border-radius: 50%; }
+    body.dark-mode .timeline-dot { border-color: #1f2937; }
+    .timeline-date { font-size: 0.75rem; font-weight: 700; color: #155eef; margin-bottom: 4px; }
+    body.dark-mode .timeline-date { color: #93c5fd; }
+    .timeline-title { margin: 0; font-size: 0.9rem; font-weight: 800; }
+    .timeline-desc { margin: 4px 0 0; font-size: 0.8rem; color: #6b7280; }
+    body.dark-mode .timeline-desc { color: #d1d5db; }
+    
+    /* Contact screen */
+    #contact-screen { padding: 16px; gap: 16px; }
+    .contact-form { display: grid; gap: 12px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 0.85rem; font-weight: 700; }
+    .form-input { padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 0.9rem; background: white; color: #101828; font-family: inherit; }
+    body.dark-mode .form-input { background: #1f2937; border-color: #374151; color: #f9fafb; }
+    .form-input:focus { outline: none; border-color: #155eef; box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.1); }
+    
+    .contact-methods { display: grid; gap: 12px; }
+    .contact-method { padding: 16px; background: white; border: 1px solid #e5e7eb; border-radius: 12px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    body.dark-mode .contact-method { background: #1f2937; border-color: #374151; }
+    .contact-icon { font-size: 1.5rem; }
+    .contact-text strong { display: block; margin-bottom: 2px; }
+    .contact-text span { font-size: 0.85rem; color: #6b7280; }
+    body.dark-mode .contact-text span { color: #d1d5db; }
+    
+    /* E-card screen */
+    #ecard-screen { padding: 16px; gap: 16px; }
+    .ecard-container { background: white; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    body.dark-mode .ecard-container { background: #1f2937; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+    
+    .ecard-name { font-size: 1.3rem; font-weight: 900; margin: 0 0 6px; }
+    .ecard-title { font-size: 0.9rem; color: #155eef; font-weight: 700; margin: 0 0 20px; }
+    body.dark-mode .ecard-title { color: #93c5fd; }
+    
+    .ecard-divider { height: 1px; background: #e5e7eb; margin: 20px 0; }
+    body.dark-mode .ecard-divider { background: #374151; }
+    
+    .ecard-contact { font-size: 0.85rem; margin: 8px 0; word-break: break-all; }
+    
+    #qr-code { margin: 20px 0; display: flex; align-items: center; justify-content: center; }
+    
+    .ecard-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .ecard-btn { padding: 10px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.8rem; }
+    .ecard-save { background: #1f2a44; color: white; }
+    body.dark-mode .ecard-save { background: #155eef; }
+    .ecard-share { background: #f3f4f6; color: #1f2a44; }
+    body.dark-mode .ecard-share { background: #374151; color: #f9fafb; }
+    
+    /* Scroll styles */
+    .app-main::-webkit-scrollbar { width: 4px; }
+    .app-main::-webkit-scrollbar-track { background: transparent; }
+    .app-main::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+    body.dark-mode .app-main::-webkit-scrollbar-thumb { background: #4b5563; }
+    
+    /* Spacing utilities */
+    .space-sm { margin-bottom: 8px; }
+    .space-md { margin-bottom: 16px; }
+  </style>
+</helmet>
+
+<div class="status-bar"></div>
+
+<div class="app-container">
+  <div class="app-main" id="app-main">
+    <!-- Profile Screen -->
+    <div id="profile-screen" class="screen active">
+      <div class="profile-header">
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onClick="{{ toggleTheme }}">
+          <span id="theme-icon">{{ themeIcon }}</span>
+        </button>
+      </div>
+      
+      <div class="profile-card">
+        <img src="assets/hero-portrait-small.webp" alt="박은미" class="profile-photo" style="object-position: center center;">
+        <h1 class="profile-name">박은미</h1>
+        <p class="profile-title">Financial IT Audit Specialist</p>
+        
+        <div class="profile-stats">
+          <div class="stat">
+            <span class="stat-num">22</span>
+            <span class="stat-label">년 경력</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">12</span>
+            <span class="stat-label">년 개발·운영</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">4</span>
+            <span class="stat-label">건 상훈</span>
+          </div>
+        </div>
+        
+        <p style="margin: 16px 0; font-size: 0.85rem; color: #6b7280; line-height: 1.6;">금융 IT 개발·운영과 감사 실무를 함께 경험한 IT 감사·내부통제 전문가입니다.</p>
+        
+        <div class="quick-actions">
+          <button class="action-btn btn-primary" onClick="{{ switchTab }}" data-tab="experience">경력 보기</button>
+          <button class="action-btn btn-secondary" onClick="{{ switchTab }}" data-tab="contact">연락하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Screen -->
+    <div id="experience-screen" class="screen">
+      <div class="section-title">4가지 전문 분야</div>
+      <div class="card">
+        <div class="card-title">금융 IT 개발·운영</div>
+        <div class="card-desc">외환·여신·전자금융 등 금융 시스템의 실무 운영 경험으로 IT 아키텍처와 운영 리스크를 이해합니다.</div>
+        <span class="card-tag">IT Ops</span><span class="card-tag">시스템 설계</span>
+      </div>
+      <div class="card">
+        <div class="card-title">IT 감사·내부통제</div>
+        <div class="card-desc">리스크 기반 감사계획 수립부터 IT 통제 영역 점검까지 체계적인 감사 프레임워크를 설계합니다.</div>
+        <span class="card-tag">Audit Planning</span><span class="card-tag">Control Testing</span>
+      </div>
+      <div class="card">
+        <div class="card-title">정보보호·보안</div>
+        <div class="card-desc">접근권한·프로그램 변경·비밀번호 정책 등 IT 보안 통제를 금융 규제 기준에 맞춰 강화합니다.</div>
+        <span class="card-tag">정보보호</span><span class="card-tag">컴플라이언스</span>
+      </div>
+      <div class="card">
+        <div class="card-title">AX 교육·자동화</div>
+        <div class="card-desc">AI·VBA를 활용해 감사 보고서·체크리스트 등 반복업무를 자동화하고 역량을 전환합니다.</div>
+        <span class="card-tag">AI 활용</span><span class="card-tag">업무 자동화</span>
+      </div>
+      
+      <div class="section-title" style="margin-top: 20px;">대표 경험</div>
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #155eef 0%, #155eef 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 0.9rem;">A</div>
+          <div class="card-title" style="margin: 0;">리스크 기반 IT감사 체계</div>
+        </div>
+        <div class="card-desc">제재사례와 감독방향을 반영해 감사계획을 수립하고, IT통제 영역 중심으로 점검항목을 체계화했습니다.</div>
+        <span class="card-tag">감사 체계</span><span class="card-tag">프레임워크</span>
+      </div>
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #087f8c 0%, #087f8c 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 0.9rem;">B</div>
+          <div class="card-title" style="margin: 0;">전자금융·장애관리 통제</div>
+        </div>
+        <div class="card-desc">기반시설 취약점 점검, 재해복구 훈련, 전자금융사고 분석과 재발방지 대책을 수행했습니다.</div>
+        <span class="card-tag">전자금융</span><span class="card-tag">DR</span>
+      </div>
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #9a6a16 0%, #9a6a16 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 0.9rem;">C</div>
+          <div class="card-title" style="margin: 0;">AI·VBA 감사 자동화</div>
+        </div>
+        <div class="card-desc">감사업무 자동화로 수행시간을 약 50% 단축했습니다. 반복업무를 줄이고 표준화를 강화했습니다.</div>
+        <span class="card-tag">AI 활용</span><span class="card-tag">VBA</span>
+      </div>
+      
+      <div class="section-title" style="margin-top: 20px;">최근 경력</div>
+      <div class="card" style="padding: 0; border: none; box-shadow: none; background: transparent;">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024.04 – 2026.01</div>
+          <div class="timeline-title">오케이저축은행 · IT부문 감사</div>
+          <div class="timeline-desc">개인신용정보 접근권한, 정보보안정책 등 IT부문 감사 수행</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2022.02 – 2023.12</div>
+          <div class="timeline-title">수협은행 · 계정계시스템 개발/운영</div>
+          <div class="timeline-desc">여신 및 외환 IT 시스템 구축·운영, IT시스템관리</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2019.05 – 2022.02</div>
+          <div class="timeline-title">수협은행 · IT내부통제 수립</div>
+          <div class="timeline-desc">개인신용정보시스템 자체점검, IT품질관리 수행</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Screen -->
+    <div id="contact-screen" class="screen">
+      <div style="padding: 16px 0;">
+        <h2 style="font-size: 1.2rem; font-weight: 900; margin: 0 0 4px;">연락처</h2>
+        <p style="margin: 0; color: #6b7280; font-size: 0.85rem;">금융 IT 감사 관련 문의를 환영합니다</p>
+      </div>
+      
+      <a href="mailto:pandom@naver.com" class="contact-method">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-text">
+          <strong>이메일</strong>
+          <span>pandom@naver.com</span>
+        </div>
+      </a>
+      
+      <a href="tel:010-9903-8994" class="contact-method">
+        <span class="contact-icon">📞</span>
+        <div class="contact-text">
+          <strong>전화</strong>
+          <span>010-9903-8994</span>
+        </div>
+      </a>
+      
+      <button class="action-btn btn-primary" onClick="{{ switchTab }}" data-tab="ecard" style="width: 100%; padding: 12px; font-size: 0.9rem;">전자명함 보기</button>
+      
+      <div style="padding: 16px; background: #f9fafb; border-radius: 12px; margin-top: 16px;">
+        <p style="margin: 0; font-size: 0.8rem; color: #6b7280; line-height: 1.5;">
+          <strong style="color: #1f2a44;">지원 직무:</strong> IT 감사 / 내부통제 / 금융 IT 리스크 관리<br>
+          <strong style="color: #1f2a44;">차별점:</strong> 개발·운영 실무와 감사 실무를 함께 보유
+        </p>
+      </div>
+    </div>
+
+    <!-- E-Card Screen -->
+    <div id="ecard-screen" class="screen">
+      <div class="ecard-container">
+        <div class="ecard-name">박은미</div>
+        <div class="ecard-title">Financial IT Audit Specialist</div>
+        
+        <div class="ecard-divider"></div>
+        
+        <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.8;">
+          <div><strong style="color: #1f2a44;">금융회사</strong> 22년 경력</div>
+          <div><strong style="color: #1f2a44;">전문분야</strong> IT 감사·내부통제</div>
+          <div><strong style="color: #1f2a44;">교육</strong> 정보보호대학원 재학중</div>
+        </div>
+        
+        <div class="ecard-divider"></div>
+        
+        <div id="qr-code" style="background: white; padding: 12px; border-radius: 8px; width: fit-content; margin-left: auto; margin-right: auto;"></div>
+        
+        <div class="ecard-contact" style="margin-top: 16px;">
+          📧 pandom@naver.com<br>
+          📱 010-9903-8994
+        </div>
+        
+        <div class="ecard-actions">
+          <button class="ecard-btn ecard-save" onClick="{{ saveECard }}">저장</button>
+          <button class="ecard-btn ecard-share" onClick="{{ shareECard }}">공유</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="app-nav">
+    <button class="nav-btn active" onClick="{{ switchTab }}" data-tab="profile">
+      <svg fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-5 0-6 3-6 3v5h12v-5s-1-3-6-3z"/></svg>
+      프로필
+    </button>
+    <button class="nav-btn" onClick="{{ switchTab }}" data-tab="experience">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-2.18c-.16-.83-.61-1.58-1.25-2.15-.64-.57-1.49-.85-2.37-.85-1.4 0-2.74.57-3.73 1.6C11.74 3.57 10.4 3 9 3c-.88 0-1.73.28-2.37.85C5.99 4.42 5.54 5.17 5.38 6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"/></svg>
+      경력
+    </button>
+    <button class="nav-btn" onClick="{{ switchTab }}" data-tab="contact">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      연락
+    </button>
+    <button class="nav-btn" onClick="{{ switchTab }}" data-tab="ecard">
+      <svg fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6h20M7 13h6M7 17h10" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+      명함
+    </button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    isDarkMode: localStorage.getItem('theme') === 'dark' || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),
+    currentTab: 'profile',
+    qrGenerated: false
+  };
+
+  componentDidMount() {
+    const { isDarkMode } = this.state;
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    }
+    this.setupEventDelegation();
+  }
+
+  setupEventDelegation() {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-tab]');
+      if (btn) {
+        const tab = btn.getAttribute('data-tab');
+        this.switchTab(tab);
+      }
+    });
+  }
+
+  toggleTheme = () => {
+    this.setState(s => {
+      const newState = !s.isDarkMode;
+      if (newState) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+      }
+      return { isDarkMode: newState };
+    });
+  }
+
+  switchTab = (tab) => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(tab + '-screen').classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`[data-tab="${tab}"]`).closest('.nav-btn')?.classList.add('active');
+    
+    this.setState({ currentTab: tab });
+    
+    if (tab === 'ecard' && !this.state.qrGenerated) {
+      setTimeout(() => this.generateQR(), 100);
+      this.setState({ qrGenerated: true });
+    }
+  }
+
+  generateQR = () => {
+    const qrContainer = document.getElementById('qr-code');
+    if (qrContainer && !qrContainer.querySelector('svg')) {
+      try {
+        new QRCode(qrContainer, {
+          text: 'https://pandom-portfolio.vercel.app',
+          width: 140,
+          height: 140,
+          colorDark: '#1f2a44',
+          colorLight: '#ffffff'
+        });
+      } catch (e) {
+        console.log('QR generation in progress');
+      }
+    }
+  }
+
+  saveECard = () => {
+    const text = '박은미 | Financial IT Audit\n📧 pandom@naver.com\n📱 010-9903-8994\n\n금융 IT 감사·내부통제 전문가\n22년 경력 | 4건 상훈';
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = '박은미_명함.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  shareECard = () => {
+    const shareData = {
+      title: '박은미 - 금융 IT 감사 전문가',
+      text: '🏢 금융 IT 감사·내부통제 전문가\n⏱️ 22년 경력\n📧 pandom@naver.com\n📱 010-9903-8994',
+      url: 'https://pandom-portfolio.vercel.app'
+    };
+    
+    if (navigator.share) {
+      navigator.share(shareData);
+    } else {
+      const shareText = shareData.text + '\n\n' + shareData.url;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareText).then(() => {
+          alert('명함 정보가 복사되었습니다!');
+        });
+      }
+    }
+  }
+
+  renderVals() {
+    return {
+      themeIcon: this.state.isDarkMode ? '☀️' : '🌙',
+      toggleTheme: this.toggleTheme,
+      switchTab: (e) => {
+        const tab = e.currentTarget.getAttribute('data-tab');
+        this.switchTab(tab);
+      },
+      saveECard: this.saveECard,
+      shareECard: this.shareECard
+    };
+  }
+}
+</script>
+</body>
+</html>
